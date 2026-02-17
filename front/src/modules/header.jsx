@@ -36,7 +36,10 @@ function Header({ cantidad, onCarrito, onSearch }) {
       {usuario ? (
         <>
           <span>Hola, {usuario.nombreDeUsuario}</span>
-          <button onClick={() => setModalDeCerrarSesion(true)}>
+          <button
+            className="cerrar-buton-cesion"
+            onClick={() => setModalDeCerrarSesion(true)}
+          >
             Cerrar Sesion
           </button>
 
@@ -44,7 +47,9 @@ function Header({ cantidad, onCarrito, onSearch }) {
             <div className="modal-overlay-close-cesion">
               <div className="modal-close-cesion">
                 <p>¿Seguro que deseas cerrar sesión?</p>
-                <button onClick={cerrarSesion}>Sí, cerrar</button>
+                <button className="cerrar-buton-cesion" onClick={cerrarSesion}>
+                  Sí, cerrar
+                </button>
                 <button onClick={() => setModalDeCerrarSesion(false)}>
                   Cancelar
                 </button>
@@ -54,12 +59,19 @@ function Header({ cantidad, onCarrito, onSearch }) {
         </>
       ) : (
         <>
-          <span>
-            <a href="/login">Iniciar Sesion</a>
-          </span>
-          <span>
-            <a href="/register"> Registrarse</a>
-          </span>
+          <button
+            className="boton-pa-iniciar"
+            onClick={() => navigate("/login")}
+          >
+            Iniciar Sesion
+          </button>
+
+          <button
+            className="boton-pa-iniciar"
+            onClick={() => navigate("/register")}
+          >
+            Registrarse
+          </button>
         </>
       )}
     </header>

@@ -108,14 +108,14 @@
 }
 
 .product-modal h2 {
-  color: #f5b400;
-  font-size: 26px;
+  color: #444;
+  font-size: 20px;
   margin-bottom: 12px;
 }
 
 .product-modal p {
   color: #444;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
 }
 

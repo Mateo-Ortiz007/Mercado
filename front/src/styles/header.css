@@ -43,17 +43,19 @@
   z-index: 999;
 }
 
-.modal-close-sesion {
+.modal-close-cesion {
   width: 500px;
-  background-color: #ffffff;
+  background-color: #fafafa;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
 }
 
-button {
-  color: #000;
-  background-color: #2563eb;
+.cerrar-buton-cesion {
+  color: #f7f7f7;
+  background-color: #f31010;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .modal-close-cesion button {
@@ -68,4 +70,12 @@ button {
 .modal-close-cesion button:last-child {
   background-color: #e5e7eb; /* gris para cancelar */
   color: #000;
+}
+
+.boton-pa-iniciar {
+  color: #000000;
+  background-color: #7295c7;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
 }
