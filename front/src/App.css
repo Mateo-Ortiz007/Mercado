@@ -1,0 +1,4 @@
+/* Rutas SPA: fondo neutro cuando no cargan estilos de página */
+#root {
+  min-height: 100vh;
+}

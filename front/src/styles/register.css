@@ -1,77 +1,104 @@
-/* LOGIN */
+/* Registro */
 .register-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #020617;
+  padding: 24px;
+  background:
+    radial-gradient(ellipse 120% 80% at 80% -10%, rgba(52, 131, 250, 0.2), transparent),
+    linear-gradient(165deg, #020617 0%, #0f172a 50%, #020617 100%);
 }
 
 .register-form {
-  background: #0f172a;
-  padding: 40px;
-  width: 360px;
-  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(12px);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.register-page h2 {
-  color: #fff;
+.register-form h2 {
+  color: #f8fafc;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-.register-page input {
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
+.register-page input,
+.register-page select {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
   outline: none;
   background: #020617;
-  color: #fff;
+  color: #f8fafc;
+  font-size: 1rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .register-page select {
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  background: #020617;
-  color: #fff;
+  cursor: pointer;
+  appearance: auto;
 }
 
 .register-page input::placeholder {
   color: #94a3b8;
 }
 
+.register-page input:focus,
+.register-page select:focus {
+  border-color: var(--color-accent, #3483fa);
+  box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.25);
+}
+
 .register-page button {
   margin-top: 10px;
-  padding: 12px;
+  padding: 14px;
   border-radius: 10px;
   border: none;
-  background: #2563eb;
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
   color: #fff;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    filter 0.15s ease;
 }
 
 .register-page button:hover {
-  background: #1d4ed8;
+  filter: brightness(1.06);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
 }
 
-.register-page p {
-  color: #f87171;
+.register-page button:active {
+  transform: scale(0.99);
+}
+
+.register-page .error,
+.register-page p.error {
+  color: #fca5a5;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
+  margin: -2px 0 0;
 }
 
-/* RESPONSIVE */
 @media (max-width: 480px) {
-  .register-page {
-    width: 90%;
-    padding: 30px;
+  .register-form {
+    padding: 32px 24px;
   }
 }
