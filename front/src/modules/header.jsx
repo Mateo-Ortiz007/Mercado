@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../styles/header.css";
 
 function Header({ cantidad, onCarrito, onSearch }) {
   const navigate = useNavigate(); // ✅ faltaba esto
-
+  const location = useLocation();
   const [usuario, setUsuario] = useState(() => {
     const user = localStorage.getItem("usuario");
     return user ? JSON.parse(user) : null;
   });
 
   const [ModalDeCerrarSesion, setModalDeCerrarSesion] = useState(false);
-
+  const enProveedores = location.pathname === "/ProveedoresShow";
   const cerrarSesion = () => {
     localStorage.removeItem("usuario");
     setUsuario(null);
@@ -32,10 +32,15 @@ function Header({ cantidad, onCarrito, onSearch }) {
       <button className="cart-btn" onClick={onCarrito}>
         🛒 {cantidad}
       </button>
+      <button
+        className="cart-btn"
+        onClick={() => navigate(enProveedores ? "/Home" : "/ProveedoresShow")}
+      >
+        {enProveedores ? "Productos" : "Nuestros Proveedores"}
+      </button>
 
       {usuario ? (
         <>
-          <span>Hola, {usuario.nombreDeUsuario}</span>
           <button onClick={() => setModalDeCerrarSesion(true)}>
             Cerrar Sesion
           </button>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/proveedores.css";
+import "../../styles/proveedores.css";
 
 function Proveedores() {
   const [proveedores, setProveedores] = useState([]);

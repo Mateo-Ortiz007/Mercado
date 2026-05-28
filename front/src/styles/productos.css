@@ -1,43 +1,55 @@
 .admin-page {
-  min-height: 100vh; /* 👈 NO height */
-  background: #020617;
-
+  min-height: 100vh;
+  background: linear-gradient(180deg, #020617 0%, #0f172a 55%, #020617 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  padding: 30px 20px;
-  gap: 40px;
-
+  padding: 32px 20px 48px;
+  gap: 36px;
   overflow-x: hidden;
 }
 
 .admin-form {
-  background: #020617;
-  padding: 40px;
-  margin-top: 30px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 36px;
+  margin-top: 8px;
   width: 100%;
   max-width: 800px;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
 .admin-form h2 {
-  color: #fff;
+  color: #f8fafc;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+  font-weight: 700;
 }
 
 .admin-form input {
   background: #020617;
-  border: 1px solid #1e293b;
-  color: #fff;
-  padding: 12px;
-  border-radius: 8px;
+  border: 1px solid #334155;
+  color: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 10px;
   outline: none;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-form input:focus {
+  border-color: var(--color-accent, #3483fa);
+  box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.2);
 }
 
 .admin-form input::placeholder {
@@ -46,41 +58,62 @@
 
 .admin-form input[type="file"] {
   border: none;
+  padding: 10px 0;
+  font-size: 0.875rem;
+  color: #94a3b8;
 }
 
 .admin-form button {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: #fff;
   border: none;
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 10px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-form button[type="button"] {
+  background: #334155;
+  border: 1px solid #475569;
+}
+
+.admin-form button[type="button"]:hover {
+  background: #475569;
+}
+
+.admin-form button:first-of-type:not([type="button"]),
+.admin-form button:not([type="button"]) {
+  margin-top: 4px;
 }
 
 .admin-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
 }
 
 .admin-form label {
-  color: #fff;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .preview-img {
   width: 100%;
   height: 160px;
   object-fit: cover;
-  border-radius: 10px;
-  border: 1px dashed #334155;
+  border-radius: 12px;
+  border: 1px dashed #475569;
 }
 
 @media (max-width: 768px) {
   .admin-form {
-    padding: 20px;
+    padding: 24px;
   }
 
   .admin-form input,
@@ -98,22 +131,29 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
-/* ===== CARD PRODUCTO ===== */
 .admin-item {
-  background: #020617;
+  background: rgba(15, 23, 42, 0.75);
   border-radius: 14px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-  color: #fff;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  color: #f8fafc;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.admin-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(52, 131, 250, 0.35);
 }
 
 .admin-item img {
@@ -121,19 +161,21 @@
   height: 180px;
   object-fit: cover;
   border-radius: 10px;
+  border: 1px solid rgba(51, 65, 85, 0.6);
 }
 
 .admin-item strong {
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .admin-item p {
   margin: 0;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 0.9rem;
+  color: #cbd5e1;
 }
 
-/* ===== BOTONES ===== */
 .actions {
   display: flex;
   gap: 10px;
@@ -142,16 +184,18 @@
 
 .actions button {
   flex: 1;
-  padding: 8px;
+  padding: 10px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: opacity 0.15s ease;
 }
 
 .actions button:first-child {
   background: #22c55e;
-  color: #020617;
+  color: #052e16;
 }
 
 .actions button:last-child {
@@ -160,72 +204,91 @@
 }
 
 .actions button:hover {
-  opacity: 0.85;
+  opacity: 0.92;
 }
 
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 16px;
 }
 
 .admin-modal {
-  background: #020617;
-  padding: 30px;
-  border-radius: 14px;
+  background: #0f172a;
+  padding: 28px;
+  border-radius: 16px;
   width: 100%;
   max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  border: 1px solid #334155;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
 }
+
 .admin-modal .save-button {
   color: #22c55e;
 }
+
 .admin-modal input {
   background: #1e293b;
-  border: 1px solid #1e293b;
-  padding: 5px;
-  color: rgb(243, 243, 243);
+  border: 1px solid #475569;
+  padding: 10px 12px;
+  color: #f8fafc;
   border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.admin-modal input:focus {
+  outline: none;
+  border-color: var(--color-accent, #3483fa);
+  box-shadow: 0 0 0 2px rgba(52, 131, 250, 0.25);
 }
 
 .admin-modal-actions {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
-  font-size: 15px;
+  margin-top: 16px;
 }
 
 .admin-modal-actions button {
   flex: 1;
-  padding: 10px;
+  padding: 11px;
   border-radius: 8px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
   border: none;
+  font-size: 0.95rem;
 }
 
 .admin-modal-actions button:first-child {
-  background: #334155;
-  color: rgb(248, 248, 248);
+  background: #475569;
+  color: #f8fafc;
 }
 
 .admin-modal-actions button:last-child {
   background: #22c55e;
-  color: #020617;
+  color: #052e16;
 }
 
 .admin-modal h3 {
-  color: #fff;
+  color: #f8fafc;
+  margin: 0 0 8px;
+  font-size: 1.15rem;
 }
 
 .admin-modal label {
-  color: #fff;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .admin-modal img {
@@ -233,7 +296,8 @@
   height: 120px;
   object-fit: cover;
   border-radius: 8px;
-  margin-top: 10px;
+  margin-top: 8px;
+  border: 1px solid #334155;
 }
 
 .admin-modal input:not([type="file"]) {

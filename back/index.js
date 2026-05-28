@@ -21,5 +21,5 @@ app.use("/login", loginRoutes);
 app.use("/register", registerRoutes);
 
 app.listen(3000, () => {
-  console.log("Servidor en http://localhost:3000");
+  console.log("Servidor en http://localhost:3000/productos");
 });

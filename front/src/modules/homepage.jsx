@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import "../styles/home.css";
 import Header from "./header";
-import ProductCard from "./productCard";
-import ProductModal from "./ProductoModal";
+import ProductCard from "./productsScreens/ProductCard";
+import ProductModal from "./productsScreens/ProductoModal";
 
 function Homepage() {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -118,7 +118,7 @@ function Homepage() {
       {/* CARRITO */}
       {verCarrito && !checkout && (
         <div className="carrito">
-          <h2>Tu carrito</h2>
+          <h2>Tu carrito </h2>
           {carrito.length === 0 && (
             <p className="carrito-vacio">Tu carrito está vacío</p>
           )}

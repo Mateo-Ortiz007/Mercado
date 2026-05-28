@@ -1,4 +1,4 @@
-import "../styles/home.css";
+import "../../styles/home.css";
 
 function ProductModal({ producto, onClose, onAdd }) {
   if (!producto) return null;
