@@ -1,200 +1,147 @@
 # DO BRONX — E-commerce de Ropa Urbana
 
-E-commerce moderno de ropa streetwear desarrollado con React + Vite. Diseñado para la comunidad urbana ecuatoriana.
+Plataforma de comercio electrónico full-stack para una marca de ropa streetwear. Desarrollado como proyecto profesional que demuestra competencias en arquitectura frontend moderna, diseño de APIs REST seguras y experiencia de usuario completa.
 
-![React](https://img.shields.io/badge/React-19-blue)
-![Vite](https://img.shields.io/badge/Vite-7-purple)
-![Node](https://img.shields.io/badge/Node-Express%205-green)
-
----
-
-## Demo
-
-Levantá el proyecto localmente y accedé a `http://localhost:5173/`
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
 
 ---
 
-## Stack Tecnológico
+## Vista Previa
+
+| Home | Detalle Producto | Carrito |
+|------|-----------------|---------|
+| Catálogo con filtros por categoría, hero banner y grid responsive | Selector de talla/color, galería, descripción y CTA | Resumen con cantidades, subtotal y checkout |
+
+---
+
+## Características Principales
 
 ### Frontend
-- **React 19** — Librería UI con componentes funcionales y hooks
-- **Vite 7** — Bundler ultrarrápido con HMR
-- **React Router DOM 7** — Enrutamiento SPA
-- **CSS Modules** — Estilos por componente, sin colisiones
-
-### Backend (preparado, no requerido para el frontend)
-- **Express 5** — Framework HTTP
-- **MySQL 2** — Base de datos con connection pool
-- **JWT** — Autenticación con tokens
-- **Zod** — Validación de schemas
-- **Multer** — Upload de imágenes
-- **Bcrypt** — Hashing de contraseñas
-
----
-
-## Estructura del Proyecto
-
-```
-├── front/src/
-│   ├── components/        # Componentes reutilizables (Header, Navbar, Footer, ProductCard)
-│   ├── pages/             # Páginas completas (Home, Producto, Carrito, Favoritos, Cuenta, Info)
-│   ├── data/              # Datos mock (productos)
-│   ├── App.jsx            # Router + estado global (carrito, favoritos, dark mode)
-│   ├── App.css            # Layout principal
-│   └── index.css          # Variables CSS + dark mode + reset
-│
-├── back/
-│   ├── routes/            # Endpoints REST (productos, proveedores, login, register)
-│   ├── middlewares/       # Auth JWT, validación Zod, error handler
-│   ├── schemas/           # Schemas de validación (Zod)
-│   ├── config/            # Configuración Multer (uploads)
-│   ├── db.js              # Connection pool MySQL
-│   └── index.js           # Entry point del servidor
-│
-├── .gitignore
-├── package.json           # Dependencias frontend
-├── vite.config.js
-└── index.html
-```
-
----
-
-## Funcionalidades
-
-### Tienda (Frontend)
-- ✅ Catálogo de productos con imágenes, precios y descuentos
-- ✅ Filtrado por categorías (Remeras, Pantalones, Buzos, Camperas, Zapatillas, Accesorios)
-- ✅ Página de detalle con selector de talla y color
-- ✅ Carrito de compras funcional (agregar, cambiar cantidad, eliminar)
-- ✅ Sistema de favoritos
-- ✅ Dark mode con persistencia en localStorage
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Navegación SPA sin recargas
-
-### Páginas informativas
-- ✅ Sobre Nosotros — Historia y valores de la marca
-- ✅ Envíos — Tiempos, métodos y cobertura en Ecuador
-- ✅ Cambios y Devoluciones — Política de 15 días
-- ✅ Guía de Talles — Tablas de medidas para todas las categorías
+- **SPA con React 19** — Navegación fluida sin recargas de página
+- **Catálogo dinámico** — Filtrado por categorías con navbar interactiva
+- **Carrito de compras** — Gestión completa (agregar, modificar cantidad, eliminar)
+- **Sistema de favoritos** — Guardado de productos con feedback visual
+- **Dark/Light mode** — Toggle con persistencia en localStorage y transición suave
+- **Responsive design** — Adaptado a mobile, tablet y desktop
+- **Detalle de producto** — Selección de talla y color con validación antes de agregar
+- **Páginas informativas** — Sobre nosotros, Envíos, Cambios/Devoluciones, Guía de Talles
 
 ### Backend (API REST)
-- ✅ JWT Authentication con refresh
-- ✅ Middleware de autorización por roles (admin/usuario)
-- ✅ Validación de inputs con Zod en todos los endpoints
-- ✅ Connection pool MySQL (10 conexiones concurrentes)
-- ✅ Rate limiting en rutas de auth (anti brute-force)
-- ✅ Error handler global con logging
-- ✅ Upload de imágenes con validación de tipo y tamaño (máx 5MB)
-- ✅ CORS configurado por origen
+- **Autenticación JWT** — Login con tokens, expiración configurable
+- **Autorización por roles** — Middleware que protege rutas admin
+- **Validación con Zod** — Schemas en cada endpoint (request body validation)
+- **Connection Pool MySQL** — 10 conexiones concurrentes, queries async/await
+- **Rate Limiting** — Protección contra brute-force en login/register
+- **Error Handler Global** — Respuestas consistentes, logging estructurado
+- **Upload de imágenes** — Multer con validación de tipo (jpg/png/webp) y tamaño (5MB)
+- **CORS configurado** — Orígenes restringidos por ambiente
 
 ---
 
-## Instalación
+## Tecnologías Utilizadas
 
-### Requisitos previos
-- Node.js 18+
-- npm 9+
-- MySQL 8+ (solo si querés usar el backend)
+| Capa | Tecnología | Uso |
+|------|-----------|-----|
+| UI | React 19 + Vite 7 | Componentes funcionales, hooks, HMR |
+| Routing | React Router DOM 7 | Navegación SPA, parámetros dinámicos |
+| Estilos | CSS custom con variables | Design system propio, dark mode, responsive |
+| Server | Express 5 (Node.js) | API REST, middlewares, static files |
+| DB | MySQL 8 + mysql2/promise | Pool de conexiones, queries parametrizadas |
+| Auth | JWT + Bcrypt | Tokens firmados, hash de contraseñas |
+| Validación | Zod (front + back) | Schemas compartidos, type-safe |
+| Upload | Multer | Almacenamiento local con filtros |
+| Seguridad | express-rate-limit, CORS, helmet patterns | Anti brute-force, origin control |
 
-### Frontend (solo tienda)
+---
+
+## Arquitectura
+
+```
+┌─────────────────────────────────────────────────┐
+│                   FRONTEND                       │
+│  React 19 + Vite + React Router                 │
+│                                                  │
+│  components/  →  UI reutilizable                │
+│  pages/       →  Vistas completas               │
+│  data/        →  Mock data (productos)          │
+│  App.jsx      →  Estado global + Router         │
+└──────────────────────┬──────────────────────────┘
+                       │ fetch + JWT Bearer
+┌──────────────────────▼──────────────────────────┐
+│                   BACKEND                        │
+│  Express 5 + MySQL + JWT                        │
+│                                                  │
+│  routes/       →  Endpoints REST                │
+│  middlewares/  →  Auth, Validate, ErrorHandler   │
+│  schemas/      →  Zod schemas                   │
+│  config/       →  Multer (uploads)              │
+│  db.js         →  Connection Pool               │
+└─────────────────────────────────────────────────┘
+```
+
+---
+
+## Instalación y Ejecución
 
 ```bash
-# Clonar el repositorio
+# Clonar
 git clone https://github.com/Mateo-Ortiz007/Mercado.git
 cd Mercado
 
-# Instalar dependencias
+# Frontend
 npm install
-
-# Levantar en desarrollo
 npm run dev
-```
+# → http://localhost:5173/
 
-Abrí `http://localhost:5173/` en tu browser.
-
-### Backend (opcional)
-
-```bash
+# Backend (opcional, requiere MySQL)
 cd back
-
-# Instalar dependencias
 npm install
-
-# Configurar variables de entorno
-# Creá un archivo back/.env con:
-# DB_HOST=localhost
-# DB_USER=root
-# DB_PASSWORD=tu_password
-# DB_NAME=DoBronx
-# DB_PORT=3306
-# PORT=3000
-# JWT_SECRET=tu_clave_secreta_aqui
-# JWT_EXPIRES_IN=24h
-
-# Crear la base de datos
-mysql -u root -p -e "CREATE DATABASE DoBronx;"
-
-# Crear tablas
-mysql -u root -p DoBronx < sql/schema.sql
-
-# Levantar servidor
+# Crear archivo .env con credenciales de DB y JWT_SECRET
 node index.js
+# → http://localhost:3000/
 ```
 
 ---
 
-## Scripts disponibles
+## Endpoints de la API
 
-| Comando | Descripción |
-|---------|-------------|
-| `npm run dev` | Levanta el frontend en modo desarrollo (HMR) |
-| `npm run build` | Build de producción optimizado |
-| `npm run preview` | Preview del build de producción |
-| `npm run lint` | Ejecuta ESLint |
-
----
-
-## Diseño
-
-### Paleta de colores
-
-| Variable | Light | Dark |
-|----------|-------|------|
-| Background | `#fafafa` | `#0f0f0f` |
-| Surface | `#ffffff` | `#1a1a1a` |
-| Text | `#111111` | `#f0f0f0` |
-| Accent | `#111111` | `#f0f0f0` |
-| Highlight | `#e63946` | `#ff4d5a` |
-| Success | `#2d6a4f` | `#4ade80` |
-
-### Tipografía
-- **Font:** Inter (Google Fonts)
-- **Pesos:** 300, 400, 500, 600, 700, 800
-
-### Componentes UI
-- Cards con hover lift + zoom de imagen
-- Chips de selección (tallas, colores)
-- Tags de estado (NUEVO, descuento %)
-- Botones con transiciones suaves
-- Navbar con scroll horizontal en mobile
-- Footer de 4 columnas responsive
+| Método | Ruta | Auth | Descripción |
+|--------|------|------|-------------|
+| POST | `/login` | ❌ | Autenticar usuario, retorna JWT |
+| POST | `/register` | ❌ | Registrar nuevo usuario |
+| GET | `/productos` | ❌ | Listar todos los productos |
+| POST | `/productos` | Admin | Crear producto (multipart) |
+| PUT | `/productos/:id` | Admin | Actualizar producto |
+| DELETE | `/productos/:id` | Admin | Eliminar producto |
+| GET | `/proveedores` | ❌ | Listar proveedores |
+| POST | `/proveedores` | Admin | Crear proveedor |
+| PUT | `/proveedores/:id` | Admin | Actualizar proveedor |
+| DELETE | `/proveedores/:id` | Admin | Eliminar proveedor |
 
 ---
 
-## Precios
+## Competencias Demostradas
 
-Los precios están en **USD** (dólar estadounidense), moneda oficial de Ecuador.
-Rango: $12.99 — $65.00
+- Desarrollo frontend con React (hooks, componentes, estado, routing)
+- Diseño UI/UX responsive con CSS puro (sin frameworks)
+- Implementación de dark mode con CSS custom properties
+- Diseño e implementación de APIs REST
+- Autenticación y autorización (JWT + roles)
+- Validación de datos en cliente y servidor (Zod)
+- Manejo de archivos (upload con validación)
+- Seguridad web (rate limiting, CORS, input sanitization)
+- Arquitectura de software (separación de capas, middlewares)
+- Control de versiones con Git
 
 ---
 
 ## Autor
 
 **Mateo Ortiz**  
-📍 Ecuador
-
----
-
-## Licencia
-
-Este proyecto es de uso educativo y personal.
+Desarrollador Full-Stack  
+📍 Ecuador  
+🔗 [GitHub](https://github.com/Mateo-Ortiz007)
