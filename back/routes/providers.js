@@ -1,47 +1,86 @@
 import express from "express";
-import { db } from "../db.js";
+import { pool } from "../db.js";
+import { verifyToken, requireAdmin } from "../middlewares/auth.js";
+import { validate } from "../middlewares/validate.js";
+import { proveedorSchema } from "../schemas/proveedor.schema.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  db.query("SELECT * FROM proveedores", (err, data) => {
-    if (err) return res.status(500).json(err);
-    res.json(data);
-  });
+// GET — público
+router.get("/", async (req, res, next) => {
+  try {
+    const [rows] = await pool.query("SELECT * FROM proveedores");
+    res.json(rows);
+  } catch (err) {
+    next(err);
+  }
 });
 
-router.post("/", (req, res) => {
-  const { nombre, empresa, tipodeproductos } = req.body;
+// POST — solo admin
+router.post(
+  "/",
+  verifyToken,
+  requireAdmin,
+  validate(proveedorSchema),
+  async (req, res, next) => {
+    try {
+      const { nombre, empresa, tipodeproductos } = req.body;
 
-  db.query(
-    "INSERT INTO proveedores (nombre, empresa, tipodeproductos) VALUES (?, ?, ?)",
-    [nombre, empresa, tipodeproductos],
-    (err, result) => {
-      if (err) return res.status(500).json(err);
-      res.json({ id: result.insertId });
-    },
-  );
-});
+      const [result] = await pool.query(
+        "INSERT INTO proveedores (nombre, empresa, tipodeproductos) VALUES (?, ?, ?)",
+        [nombre, empresa, tipodeproductos],
+      );
 
-router.put("/:id", (req, res) => {
-  const { id } = req.params;
-  const { nombre, empresa, tipodeproductos } = req.body;
+      res.status(201).json({ id: result.insertId, msg: "Proveedor creado" });
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
-  db.query(
-    "UPDATE proveedores SET nombre=?, empresa=?, tipodeproductos=? WHERE id=?",
-    [nombre, empresa, tipodeproductos, id],
-    (err) => {
-      if (err) return res.status(500).json(err);
+// PUT — solo admin
+router.put(
+  "/:id",
+  verifyToken,
+  requireAdmin,
+  validate(proveedorSchema),
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const { nombre, empresa, tipodeproductos } = req.body;
+
+      const [result] = await pool.query(
+        "UPDATE proveedores SET nombre=?, empresa=?, tipodeproductos=? WHERE id=?",
+        [nombre, empresa, tipodeproductos, id],
+      );
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ msg: "Proveedor no encontrado" });
+      }
+
       res.json({ msg: "Proveedor actualizado" });
-    },
-  );
-});
+    } catch (err) {
+      next(err);
+    }
+  },
+);
 
-router.delete("/:id", (req, res) => {
-  db.query("DELETE FROM proveedores WHERE id=?", [req.params.id], (err) => {
-    if (err) return res.status(500).json(err);
+// DELETE — solo admin
+router.delete("/:id", verifyToken, requireAdmin, async (req, res, next) => {
+  try {
+    const [result] = await pool.query(
+      "DELETE FROM proveedores WHERE id=?",
+      [req.params.id],
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ msg: "Proveedor no encontrado" });
+    }
+
     res.json({ msg: "Proveedor eliminado" });
-  });
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

@@ -1,44 +1,52 @@
 import express from "express";
-import { db } from "../db.js";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { pool } from "../db.js";
+import { validate } from "../middlewares/validate.js";
+import { loginSchema } from "../schemas/auth.schema.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  const { email, password } = req.body;
+router.post("/", validate(loginSchema), async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
 
-  db.query(
-    "SELECT * FROM usuarios WHERE email = ?",
-    [email],
-    async (err, results) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ msg: "Error del servidor" });
-      }
+    const [rows] = await pool.query(
+      "SELECT * FROM usuarios WHERE email = ?",
+      [email],
+    );
 
-      if (results.length === 0) {
-        return res.status(401).json({ msg: "Usuario no existe" });
-      }
+    if (rows.length === 0) {
+      return res.status(401).json({ msg: "Usuario no existe" });
+    }
 
-      const user = results[0];
+    const user = rows[0];
+    const ok = await bcrypt.compare(password, user.password);
 
-      try {
-        const ok = await bcrypt.compare(password, user.password);
+    if (!ok) {
+      return res.status(401).json({ msg: "Contraseña incorrecta" });
+    }
 
-        if (!ok) {
-          return res.status(401).json({ msg: "Contraseña incorrecta" });
-        }
+    // Generar JWT
+    const token = jwt.sign(
+      { id: user.id, rol: user.rol || "usuario", nombre: user.nombreDeUsuario },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || "24h" },
+    );
 
-        res.json({
-          msg: "Login correcto",
-          userId: user.id,
-        });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ msg: "Error al validar contraseña" });
-      }
-    },
-  );
+    res.json({
+      msg: "Login correcto",
+      token,
+      usuario: {
+        id: user.id,
+        nombre: user.nombreDeUsuario,
+        email: user.email,
+        rol: user.rol || "usuario",
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 export default router;

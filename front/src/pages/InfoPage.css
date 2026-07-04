@@ -1,0 +1,173 @@
+.info-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.info-page h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.info-page .subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0 0 36px;
+}
+
+.info-page h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 36px 0 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.info-page h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.info-page p {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.info-page ul {
+  margin: 0 0 16px;
+  padding: 0 0 0 20px;
+}
+
+.info-page li {
+  font-size: 0.92rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.info-page .highlight-box {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+
+.info-page .highlight-box p {
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* Tabla de talles */
+.talles-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.88rem;
+}
+
+.talles-table th,
+.talles-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+.talles-table th {
+  background: var(--color-btn-solid-bg);
+  color: var(--color-btn-solid-text);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.talles-table td {
+  background: var(--color-surface);
+}
+
+.talles-table tr:hover td {
+  background: var(--color-bg);
+}
+
+/* Valores / About grid */
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.valor-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+
+.valor-card:hover {
+  border-color: var(--color-text);
+}
+
+.valor-card .valor-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.valor-card h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.valor-card p {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Steps */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-btn-solid-bg);
+  color: var(--color-btn-solid-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.step-content p {
+  margin: 0;
+  font-size: 0.85rem;
+}

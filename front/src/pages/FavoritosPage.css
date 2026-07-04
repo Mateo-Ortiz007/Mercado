@@ -1,0 +1,41 @@
+.favoritos-page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.favoritos-page > h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 28px;
+}
+
+.favs-empty {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.favs-empty p {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin: 0 0 20px;
+}
+
+.btn-explorar {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--color-btn-solid-bg);
+  color: var(--color-btn-solid-text);
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+
+.btn-explorar:hover { transform: translateY(-2px); }
+
+.favs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
